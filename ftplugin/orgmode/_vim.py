@@ -249,11 +249,11 @@ def fold_orgmode(allow_dirty=False):
 			# vim.command((u'let b:fold_expr = ">%d"' % heading.level + checkbox.level).encode(u'utf-8'))
 		# vim.command((u'let b:fold_expr = "0"').encode('utf-8'))
 		if line == heading.start_vim:
-			vim.command((u'let b:fold_expr = %d' % heading.level - 1).encode(u'utf-8'))
+			vim.command((u'let b:fold_expr = "%d"' % heading.level - 1).encode(u'utf-8'))
 		elif line - heading.start_vim == 1:
 			vim.command((u'let b:fold_expr = ">%d"' % heading.level).encode(u'utf-8'))
 		else:
-			vim.command((u'let b:fold_expr = %d' % heading.level).encode(u'utf-8'))
+			vim.command((u'let b:fold_expr = "%d"' % heading.level).encode(u'utf-8'))
 		# elif line == heading.end_vim:
 		# 	vim.command((u'let b:fold_expr = "<%d"' % heading.level).encode(u'utf-8'))
 		#  end_of_last_child_vim is a performance junky and is actually not needed

@@ -7,7 +7,7 @@ hi def link org_todo_key Identifier
 
 let s:todo_headings = ''
 let s:i = 1
-while s:i <= g:org_heading_highlight_levels
+while s:i <= g:vimwiki_org_heading_highlight_levels
 	if s:todo_headings == ''
 		let s:todo_headings = 'containedin=org_heading' . s:i
 	else
@@ -34,7 +34,7 @@ if !exists('g:loaded_orgagenda_syntax')
 			let l:_i = substitute(l:i, "\(.*$", "", "")
 
 			let l:group = l:default_group
-			for l:j in g:org_todo_keyword_faces
+			for l:j in g:vimwiki_org_todo_keyword_faces
 				if l:j[0] == l:_i
 					let l:group = 'orgtodo_todo_keyword_face_' . l:_i
 					call OrgExtendHighlightingGroup(l:default_group, l:group, OrgInterpretFaces(l:j[1]))
@@ -47,7 +47,7 @@ if !exists('g:loaded_orgagenda_syntax')
 	endfunction
 endif
 
-call s:ReadTodoKeywords(g:org_todo_keywords, s:todo_headings)
+call s:ReadTodoKeywords(g:vimwiki_org_todo_keywords, s:todo_headings)
 unlet! s:todo_headings
 
 " Timestamps

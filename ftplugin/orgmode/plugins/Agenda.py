@@ -70,7 +70,7 @@ class Agenda(object):
 		TODO: maybe turn this into an decorator?
 		"""
 		# load org files of agenda
-		agenda_files = settings.get(u'org_agenda_files', u',')
+		agenda_files = settings.get(u'vimwiki_org_agenda_files', u',')
 		if not agenda_files or agenda_files == ',':
 			echoe((
 				u"No org_agenda_files defined. Use :let "

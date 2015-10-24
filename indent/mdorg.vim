@@ -4,9 +4,16 @@ if !exists("g:org_indent")
 endif
 
 " setlocal foldtext=GetOrgFoldtext()
+setlocal tabstop=6
 setlocal fillchars-=fold:-
 setlocal fillchars+=fold:\ 
-setlocal foldtext='\ \ \ \ \ \ ------\ FOLED\ TEXT\ ------'
+setlocal foldminlines=1
+if !exists("g:org_fold_text")
+  " setlocal foldtext='\ \ \ \ \ \ ------\ FOLDED\ TEXT\ ------'
+  setlocal foldtext='\ \ \ \ \ \ ......'
+else
+  setlocal foldtext = g:org_fold_text
+endif
 setlocal foldexpr=GetOrgFolding()
 setlocal foldmethod=expr
 setlocal indentexpr=GetOrgIndent()

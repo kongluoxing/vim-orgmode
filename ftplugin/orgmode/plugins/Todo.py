@@ -342,7 +342,7 @@ class Todo(object):
 			u':py ORGMODE.plugins[u"Todo"].toggle_todo_state(direction=2, next_set=True)<CR>')))
 		submenu + ActionEntry(u'Previous &keyword set', self.keybindings[-1])
 
-		settings.set(u'org_todo_keywords', [u'TODO'.encode(u'utf-8'), u'|'.encode(u'utf-8'), u'DONE'.encode(u'utf-8')])
+		settings.set(u'vimwiki_org_todo_keywords', [u'TODO'.encode(u'utf-8'), u'|'.encode(u'utf-8'), u'DONE'.encode(u'utf-8')])
 
 		settings.set(u'org_todo_prompt_position', u'botright')
 

@@ -79,7 +79,7 @@ class ShowHide(object):
 
 		def open_fold(h):
 			if h.number_of_parents <= open_depth:
-				vim.command((u'normal! %dgg%dzo' % (h.start_vim, open_depth)).encode(u'utf-8'))
+				vim.command((u'normal! %dgg%dzo' % (h.start_vim + 1, open_depth)).encode(u'utf-8'))
 			for c in h.children:
 				open_fold(c)
 

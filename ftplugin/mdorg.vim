@@ -43,7 +43,7 @@ let g:loaded_vimwiki_org = 1
 
 " Default org plugins that will be loaded (in the given order)
 if ! exists('g:org_plugins') && ! exists('b:org_plugins')
-	let g:org_plugins = ['ShowHide', '|', 'Navigator', 'EditStructure', 'EditCheckbox', '|', 'Hyperlinks', '|', 'Todo', 'TagsProperties', 'Date', 'Agenda', 'Misc', '|', 'Export']
+	let g:org_plugins = ['ShowHide', '|', 'Navigator', 'EditStructure', 'EditCheckbox', '|', 'Hyperlinks', '|', 'Todo', 'TagsProperties', 'Date', 'Agenda', 'Misc']
 endif
 
 if ! exists('g:vimwiki_org_syntax_highlight_leading_stars') && ! exists('b:vimwiki_org_syntax_highlight_leading_stars')
@@ -67,10 +67,21 @@ if b in ORGMODE._documents:
 EOF
 endfunction
 
+function! <SID>OrgUnmapVimwikiReturn()
+    if !empty(maparg('<CR>', 'i'))
+	iunmap <buffer> <CR>
+    endif
+    if !empty(maparg('<S-CR>', 'i'))
+	iunmap <buffer> <S-CR>
+	inoremap <buffer> <S-CR> <ESC>:VimwikiReturn 1 5<CR>
+    endif
+endfunction
+
 " show and hide Org menu depending on the filetype
 augroup orgmode
 	au BufEnter * :if &filetype == "mdorg" | call <SID>OrgRegisterMenu() | endif
 	au BufLeave * :if &filetype == "mdorg" | call <SID>OrgUnregisterMenu() | endif
+	au BufEnter * :if &filetype == "vimwiki.mdorg" | call <SID>OrgUnmapVimwikiReturn() | endif
 	au BufDelete * :call <SID>OrgDeleteUnusedDocument(expand('<abuf>'))
 augroup END
 
@@ -101,14 +112,14 @@ catch
 endtry
 
 " * Tagbar {{{2
-let g:tagbar_type_org = {
-			\ 'ctagstype' : 'org',
+" Leave here, when ctags support markdown, this will work
+let g:tagbar_type_mdorg = {
+			\ 'ctagstype' : 'markdown',
 			\ 'kinds'     : [
 				\ 's:sections',
 				\ 'h:hyperlinks',
 			\ ],
-			\ 'sort'    : 0,
-			\ 'deffile' : expand('<sfile>:p:h') . '/org.cnf'
+			\ 'sort'    : 0
 			\ }
 
 " * Taglist {{{2
